@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-mono: var(--font-space-mono);
+  
+  /* Lighter earthy green theme */
+  --color-earth-900: #ffffff; /* Brightest white/background for contrast elements */
+  --color-earth-800: #e2e8e4; /* Light sage green for cards and elements */
+  --color-earth-700: #cbd5ce; /* Slightly darker sage for borders */
+  --color-accent: #059669; /* Emerald 600 - darker green for readability on light backgrounds */
+  --color-accent-light: #10b981; /* Emerald 500 */
+}
+
+:root {
+  --background: #f1f5f2; /* Soft, light pale green background */
+  --foreground: #112117; /* Very dark green/almost black text for high readability */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  overflow-x: hidden;
+  /* Glows adjusted for light background */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(5, 150, 105, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(5, 150, 105, 0.05) 0%, transparent 50%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.6); /* White glass for light theme */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05); /* Extremely soft shadow for light mode */
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(5, 150, 105, 0.4);
+  background: rgba(255, 255, 255, 0.9); /* Whiter on hover */
+}
+
+.futuristic-border {
+  position: relative;
+}
+
+.futuristic-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  background: linear-gradient(45deg, var(--color-accent), transparent) border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.futuristic-border:hover::after {
+  opacity: 0.6;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-earth-900);
+}
+
+/* For decorative tech lines */
+.tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(5, 150, 105, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(5, 150, 105, 0.05) 1px, transparent 1px);
+}
